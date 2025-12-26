@@ -10,7 +10,7 @@ import * as THREE from "three";
 import { easing } from "maath";
 import { generateParticles } from "@/utils/generators";
 
-const PARTICLE_COUNT = 1500;
+const PARTICLE_COUNT = 4000;
 const CUP_COLOR = "#f97316";
 
 function Particles() {
@@ -61,7 +61,7 @@ function Particles() {
                 dummy.position.y += noise * 0.5;
             }
 
-            const scale = 0.08;
+            const scale = 0.09;
             dummy.scale.set(scale, scale, scale);
 
             dummy.updateMatrix();
