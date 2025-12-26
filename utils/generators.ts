@@ -63,7 +63,9 @@ export function generateParticles(count: number) {
                         d = Math.sqrt(distAxisSq + dy * dy);
                     }
 
-                    if (d >= radius - wallThickness) {
+                    if (y < yBottom + 0.25) {
+                        isSolid = true;
+                    } else if (d >= radius - wallThickness) {
                         isSolid = true;
                     }
 
