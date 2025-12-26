@@ -53,7 +53,7 @@ const contactVariants: Variants = {
 export default function TextSection() {
     return (
         <motion.div
-            className="flex flex-col justify-between items-center h-full w-full pt-68 pb-66 px-6 md:pt-32 md:pb-10 md:px-10 relative pointer-events-none"
+            className="flex flex-col justify-between items-center h-dvh w-full py-20 px-6 md:py-12 md:px-10 relative pointer-events-none"
             variants={containerVariants}
             initial="hidden"
             animate="show"
