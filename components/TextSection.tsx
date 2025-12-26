@@ -38,6 +38,18 @@ const bottomItemVariants: Variants = {
     },
 };
 
+const contactVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 1.0,
+            ease: "easeOut",
+            delay: 9.5
+        }
+    },
+};
+
 export default function TextSection() {
     return (
         <motion.div
@@ -58,9 +70,19 @@ export default function TextSection() {
             <div className="grow" />
 
             <motion.div variants={bottomItemVariants} className="flex flex-col items-center pointer-events-auto opacity-0">
-                <h1 className="text-3xl md:text-7xl font-display font-bold text-white leading-tight text-center whitespace-nowrap">
+                <h1 className="text-3xl md:text-7xl font-display font-bold text-white leading-tight text-center whitespace-nowrap mb-6">
                     Shape to <span className="text-yellow-400">Your Idea.</span>
                 </h1>
+
+                <motion.a
+                    variants={contactVariants}
+                    href="https://wa.me/6289692070270"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-slate-500 hover:text-yellow-400 transition-colors duration-300 uppercase cursor-pointer"
+                >
+                    &gt; START_PROJECT // +62 896 9207 0270
+                </motion.a>
             </motion.div>
         </motion.div>
     );
