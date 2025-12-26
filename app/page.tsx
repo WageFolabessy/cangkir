@@ -3,7 +3,7 @@ import TextSection from "@/components/TextSection";
 
 export default function Home() {
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-slate-50">
+    <main className="relative h-screen w-full overflow-hidden bg-zinc-950">
       <div className="absolute inset-0 z-0">
         <FormationCanvas />
       </div>

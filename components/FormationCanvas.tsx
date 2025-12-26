@@ -11,7 +11,7 @@ import { easing } from "maath";
 import { generateParticles } from "@/utils/generators";
 
 const PARTICLE_COUNT = 4000;
-const CUP_COLOR = "#f97316";
+const CUP_COLOR = "#facc15";
 
 const particleData = generateParticles(PARTICLE_COUNT);
 
@@ -85,10 +85,12 @@ function Particles() {
                 <boxGeometry args={[1, 1, 1]} />
                 <meshPhysicalMaterial
                     color={CUP_COLOR}
-                    roughness={0.25}
-                    metalness={0.1}
-                    transmission={0.6}
-                    thickness={1.8}
+                    emissive={CUP_COLOR}
+                    emissiveIntensity={0.5}
+                    roughness={0.2}
+                    metalness={0.8}
+                    transmission={0.2}
+                    thickness={1.5}
                     ior={1.5}
                     clearcoat={1}
                 />
@@ -101,10 +103,10 @@ export default function FormationCanvas() {
     return (
         <div className="w-full h-full relative">
             <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 8], fov: 45 }}>
-                <color attach="background" args={["#f8fafc"]} />
+                <color attach="background" args={["#09090b"]} />
                 <ambientLight intensity={0.5} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={100} castShadow />
-                <pointLight position={[-10, -10, -10]} intensity={50} color="indigo" />
+                <pointLight position={[-10, -10, -10]} intensity={50} color="#eab308" />
 
                 <SceneContent />
             </Canvas>

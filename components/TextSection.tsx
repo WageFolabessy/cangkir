@@ -49,17 +49,17 @@ export default function TextSection() {
             <div className="flex flex-col items-center gap-3 pointer-events-auto">
                 <motion.p
                     variants={topItemVariants}
-                    className="opacity-0 font-bold tracking-[0.3em] uppercase text-xs text-slate-900"
+                    className="opacity-0 font-bold tracking-[0.3em] uppercase text-xs text-slate-200"
                 >
-                    Digital Crafting
+                    Digital <span className="text-yellow-400">Crafting</span>
                 </motion.p>
             </div>
 
             <div className="grow" />
 
             <motion.div variants={bottomItemVariants} className="flex flex-col items-center pointer-events-auto opacity-0">
-                <h1 className="text-3xl md:text-7xl font-display font-bold text-slate-900 leading-tight text-center whitespace-nowrap">
-                    Shape to <span className="text-indigo-600">Your Idea.</span>
+                <h1 className="text-3xl md:text-7xl font-display font-bold text-white leading-tight text-center whitespace-nowrap">
+                    Shape to <span className="text-yellow-400">Your Idea.</span>
                 </h1>
             </motion.div>
         </motion.div>
