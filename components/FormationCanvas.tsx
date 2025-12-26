@@ -13,12 +13,17 @@ import { generateParticles } from "@/utils/generators";
 const PARTICLE_COUNT = 4000;
 const CUP_COLOR = "#f97316";
 
+let cachedData: { chaosPositions: Float32Array; cupPositions: Float32Array } | null = null;
+
 function Particles() {
     const meshRef = useRef<THREE.InstancedMesh>(null);
 
 
     const { chaosPositions, cupPositions } = useMemo(() => {
-        return generateParticles(PARTICLE_COUNT);
+        if (!cachedData) {
+            cachedData = generateParticles(PARTICLE_COUNT);
+        }
+        return cachedData;
     }, []);
 
     const progress = useRef(0);
@@ -36,7 +41,7 @@ function Particles() {
 
         const target = targetProgress.current;
 
-        easing.damp(progress, "current", target, 1.2, delta);
+        easing.damp(progress, "current", target, 3.0, delta);
 
         const p = progress.current;
         const dummy = new THREE.Object3D();
@@ -56,9 +61,12 @@ function Particles() {
                 cz + (tz - cz) * p
             );
 
-            if (p < 0.9 && p > 0.1) {
-                const noise = Math.sin(state.clock.elapsedTime * 2 + i) * (1 - p);
-                dummy.position.y += noise * 0.5;
+            if (p < 0.9) {
+                const fade = 1 - (p / 0.9);
+                const noiseIntensity = fade * fade * fade * 4;
+
+                const noise = Math.sin(state.clock.elapsedTime * 2 + i) * noiseIntensity;
+                dummy.position.y += noise * 0.2;
             }
 
             const scale = 0.09;
@@ -71,7 +79,7 @@ function Particles() {
     });
 
     return (
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.2}>
             <instancedMesh
                 ref={meshRef}
                 args={[undefined, undefined, PARTICLE_COUNT]}
