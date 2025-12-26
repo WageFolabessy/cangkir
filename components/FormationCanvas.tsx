@@ -5,7 +5,7 @@ import { OrbitControls, Environment, Float } from "@react-three/drei";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { easing } from "maath";
 import { generateParticles } from "@/utils/generators";
@@ -13,26 +13,23 @@ import { generateParticles } from "@/utils/generators";
 const PARTICLE_COUNT = 4000;
 const CUP_COLOR = "#f97316";
 
-let cachedData: { chaosPositions: Float32Array; cupPositions: Float32Array } | null = null;
+const particleData = generateParticles(PARTICLE_COUNT);
 
 function Particles() {
     const meshRef = useRef<THREE.InstancedMesh>(null);
 
-
-    const { chaosPositions, cupPositions } = useMemo(() => {
-        if (!cachedData) {
-            cachedData = generateParticles(PARTICLE_COUNT);
-        }
-        return cachedData;
-    }, []);
+    const { chaosPositions, cupPositions } = particleData;
 
     const progress = useRef(0);
     const targetProgress = useRef(0);
 
+    const [started, setStarted] = useState(false);
+
     useEffect(() => {
         const t = setTimeout(() => {
             targetProgress.current = 1;
-        }, 500);
+            setStarted(true);
+        }, 1400);
         return () => clearTimeout(t);
     }, []);
 
@@ -41,7 +38,7 @@ function Particles() {
 
         const target = targetProgress.current;
 
-        easing.damp(progress, "current", target, 3.0, delta);
+        easing.damp(progress, "current", target, 2.5, delta);
 
         const p = progress.current;
         const dummy = new THREE.Object3D();
@@ -83,6 +80,7 @@ function Particles() {
             <instancedMesh
                 ref={meshRef}
                 args={[undefined, undefined, PARTICLE_COUNT]}
+                visible={started}
             >
                 <boxGeometry args={[1, 1, 1]} />
                 <meshPhysicalMaterial

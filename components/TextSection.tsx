@@ -8,7 +8,7 @@ const containerVariants: Variants = {
         opacity: 1,
         transition: {
             staggerChildren: 0.3,
-            delayChildren: 0.5,
+            delayChildren: 0.2,
         },
     },
 };
@@ -19,9 +19,8 @@ const topItemVariants: Variants = {
         y: 0,
         opacity: 1,
         transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 20
+            duration: 1.2,
+            ease: "easeOut"
         }
     },
 };
@@ -32,10 +31,9 @@ const bottomItemVariants: Variants = {
         y: 0,
         opacity: 1,
         transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 20,
-            delay: 2.8
+            duration: 1.2,
+            ease: "easeOut",
+            delay: 8.5
         }
     },
 };
@@ -51,7 +49,7 @@ export default function TextSection() {
             <div className="flex flex-col items-center gap-3 pointer-events-auto">
                 <motion.p
                     variants={topItemVariants}
-                    className="font-bold tracking-[0.3em] uppercase text-xs text-slate-900"
+                    className="opacity-0 font-bold tracking-[0.3em] uppercase text-xs text-slate-900"
                 >
                     Digital Crafting
                 </motion.p>
@@ -59,7 +57,7 @@ export default function TextSection() {
 
             <div className="grow" />
 
-            <motion.div variants={bottomItemVariants} className="flex flex-col items-center pointer-events-auto">
+            <motion.div variants={bottomItemVariants} className="flex flex-col items-center pointer-events-auto opacity-0">
                 <h1 className="text-3xl md:text-7xl font-display font-bold text-slate-900 leading-tight text-center whitespace-nowrap">
                     Shape to <span className="text-indigo-600">Your Idea.</span>
                 </h1>
