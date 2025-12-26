@@ -9,7 +9,7 @@ export default function Home() {
       </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="w-full h-full flex items-center justify-center pointer-events-auto">
+        <div className="w-full h-full flex items-center justify-center">
           <TextSection />
         </div>
       </div>

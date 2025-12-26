@@ -43,12 +43,12 @@ const bottomItemVariants: Variants = {
 export default function TextSection() {
     return (
         <motion.div
-            className="flex flex-col justify-between items-center h-full w-full pt-64 pb-64 px-6 md:py-16 md:px-10 relative"
+            className="flex flex-col justify-between items-center h-full w-full pt-64 pb-64 px-6 md:py-16 md:px-10 relative pointer-events-none"
             variants={containerVariants}
             initial="hidden"
             animate="show"
         >
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-3 pointer-events-auto">
                 <motion.p
                     variants={topItemVariants}
                     className="font-bold tracking-[0.3em] uppercase text-xs text-slate-900"
@@ -59,7 +59,7 @@ export default function TextSection() {
 
             <div className="grow" />
 
-            <motion.div variants={bottomItemVariants} className="flex flex-col items-center">
+            <motion.div variants={bottomItemVariants} className="flex flex-col items-center pointer-events-auto">
                 <h1 className="text-3xl md:text-7xl font-display font-bold text-slate-900 leading-tight text-center whitespace-nowrap">
                     Shape to <span className="text-indigo-600">Your Idea.</span>
                 </h1>

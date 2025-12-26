@@ -15,7 +15,7 @@ const CUP_COLOR = "#f97316";
 
 function Particles() {
     const meshRef = useRef<THREE.InstancedMesh>(null);
-    const [hovered, setHovered] = useState(false);
+
 
     const { chaosPositions, cupPositions } = useMemo(() => {
         return generateParticles(PARTICLE_COUNT);
@@ -34,7 +34,7 @@ function Particles() {
     useFrame((state, delta) => {
         if (!meshRef.current) return;
 
-        const target = hovered ? 0.6 : targetProgress.current;
+        const target = targetProgress.current;
 
         easing.damp(progress, "current", target, 1.2, delta);
 
@@ -75,8 +75,6 @@ function Particles() {
             <instancedMesh
                 ref={meshRef}
                 args={[undefined, undefined, PARTICLE_COUNT]}
-                onPointerOver={() => setHovered(true)}
-                onPointerOut={() => setHovered(false)}
             >
                 <boxGeometry args={[1, 1, 1]} />
                 <meshPhysicalMaterial
