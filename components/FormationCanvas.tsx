@@ -5,7 +5,7 @@ import { OrbitControls, Environment, Float } from "@react-three/drei";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { easing } from "maath";
 import { generateParticles } from "@/utils/generators";
@@ -221,8 +221,9 @@ function StarField({ count = 200 }: { count?: number }) {
     const meshRef = useRef<THREE.Points>(null);
     const [texture] = useState(() => typeof window !== "undefined" ? generateStarTexture() : null);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const pointsData = useMemo(() => {
+
+
+    const [pointsData] = useState(() => {
         const positions = new Float32Array(count * 3);
         const scales = new Float32Array(count);
         const shifts = new Float32Array(count);
@@ -240,7 +241,7 @@ function StarField({ count = 200 }: { count?: number }) {
             shifts[i] = Math.random() * 100;
         }
         return { positions, scales, shifts };
-    }, [count]);
+    });
 
     useFrame((state) => {
         if (meshRef.current && meshRef.current.material) {

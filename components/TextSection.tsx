@@ -79,7 +79,7 @@ export default function TextSection() {
                     href="https://wa.me/6289692070270"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-slate-500 hover:text-yellow-400 transition-colors duration-300 uppercase cursor-pointer"
+                    className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-white hover:text-yellow-400 transition-colors duration-300 uppercase cursor-pointer"
                 >
                     &gt; START_PROJECT // +62 896 9207 0270
                 </motion.a>
